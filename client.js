@@ -1,9 +1,10 @@
-/*global document, window */
+/* global document, window */
 
 import React from 'react';
 import debug from 'debug';
 import { createElementWithContext } from 'fluxible-addons-react';
 import app from './app';
+
 
 const debugClient = debug('89-steps');
 const dehydratedState = window.App; // Sent from the server
@@ -18,16 +19,17 @@ debugClient('rehydrating app');
 
 // pass in the dehydrated server state from server.js
 app.rehydrate(dehydratedState, (err, context) => {
-    if (err) {
-        throw err;
-    }
-    window.context = context;
-    const mountNode = document.getElementById('app');
+  if (err) {
+    throw err;
+  }
+  window.context = context;
+  const mountNode = document.getElementById('app');
 
-    debugClient('React Rendering');
-    React.render(
-        createElementWithContext(context),
-        mountNode,
-        () => debugClient('React Rendered')
-    );
+  debugClient('React Rendering');
+  React.render(
+    createElementWithContext(context),
+    mountNode,
+    () => debugClient('React Rendered')
+  );
 });
+
