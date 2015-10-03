@@ -15,9 +15,15 @@ class Nav extends React.Component {
         className = 'pure-menu-selected';
       }
 
+      // TODO(dbow): Remove - this is just a demo of NavLink with params.
+      var navParams = {};
+      if (link.page === 'street') {
+        navParams = {frame: '5'};
+      }
+
       return (
         <li className={className} key={link.path}>
-          <NavLink routeName={link.page} activeStyle={{backgroundColor: '#eee'}}>{link.title}</NavLink>
+          <NavLink routeName={link.page} navParams={navParams} activeStyle={{backgroundColor: '#eee'}}>{link.title}</NavLink>
         </li>
       );
     });

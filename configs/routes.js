@@ -7,11 +7,17 @@ export default {
     handler: require('../components/scenes/intro'),
   },
   street: {
-    path: '/street',
+    path: '/street/:frame*',
     method: 'get',
     page: 'street',
     title: 'The Street',
     handler: require('../components/scenes/street'),
+    action: (context, payload, done) => {
+      var frame = payload.get('params').get('frame');
+      console.log(frame);
+      // TODO(dbow): Dispatch an action to set the frame here?
+      done();
+    },
   },
   stairs: {
     path: '/stairs',
