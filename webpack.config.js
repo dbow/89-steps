@@ -1,10 +1,9 @@
 var webpack = require('webpack');
 var path = require('path');
 
-
 var webpackConfig = {
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.scss'],
   },
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
@@ -12,8 +11,8 @@ var webpackConfig = {
     './client.js',
   ],
   output: {
-    path: path.resolve('./build/js'),
-    publicPath: '/public/js/',
+    path: path.resolve('./build'),
+    publicPath: '/public/',
     filename: 'main.js',
   },
   module: {
@@ -22,13 +21,17 @@ var webpackConfig = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
-            require.resolve('react-hot-loader'),
-            require.resolve('babel-loader'),
+          require.resolve('react-hot-loader'),
+          require.resolve('babel-loader'),
         ],
       },
       {
         test: /\.json$/,
         loader: 'json-loader',
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!autoprefixer-loader?browsers=last 2 version!sass-loader',
       },
     ],
   },
@@ -41,6 +44,7 @@ var webpackConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        BROWSER: JSON.stringify(true),
       },
     }),
   ],

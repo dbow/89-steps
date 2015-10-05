@@ -49,6 +49,7 @@ server.use((req, res, next) => {
     debug('Rendering Application component into html');
     const html = React.renderToStaticMarkup(htmlComponent({
       clientFile: env === 'production' ? 'main.min.js' : 'main.js',
+      clientStyles: env === 'production' ? 'main.css' : '',
       context: context.getComponentContext(),
       state: exposed,
       markup: React.renderToString(createElementWithContext(context)),

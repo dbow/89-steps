@@ -2,6 +2,11 @@ import React from 'react';
 import { NavLink } from 'fluxible-router';
 
 
+if (process.env.BROWSER) {
+  require('./nav.scss');
+}
+
+
 class Nav extends React.Component {
   render() {
     const selected = this.props.selected;
