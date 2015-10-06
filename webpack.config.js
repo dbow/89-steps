@@ -3,6 +3,7 @@ var path = require('path');
 
 var webpackConfig = {
   resolve: {
+    root: __dirname,
     extensions: ['', '.js', '.jsx', '.scss'],
   },
   entry: [

@@ -5,9 +5,9 @@
   "main": "start.js",
   "scripts": {
     "build": "webpack & webpack --config webpack.config.production.js",
-    "dev": "node webpack-dev-server.js & PORT=3001 nodemon start.js -e js,jsx",
+    "dev": "node webpack-dev-server.js & export NODE_PATH=$NODE_PATH:./; PORT=3001 nodemon start.js -e js,jsx",
     "lint": "eslint ./*.js ./**/*.js",
-    "start": "NODE_ENV=production node start.js"
+    "start": "export NODE_PATH=$NODE_PATH:./; NODE_ENV=production; node start.js"
   },
   "dependencies": {
     "babel": "^5.4.7",
